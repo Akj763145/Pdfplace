@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,6 +125,34 @@
             <option value="kgs-notes">KGS Notes</option>
             <option value="others">Others</option>
           </select>
+        </div>
+
+        <!-- Storage Information -->
+        <div id="storageInfo" class="storage-info" style="display: none;">
+          <div class="storage-header">
+            <h3>💾 Storage Usage</h3>
+          </div>
+          <div class="storage-details">
+            <div class="storage-bar-container">
+              <div id="storageBar" class="storage-bar">
+                <div id="storageProgress" class="storage-progress"></div>
+              </div>
+              <div class="storage-text">
+                <span id="storageUsed">0 MB</span> / <span class="storage-total">2 GB</span>
+                (<span id="storagePercent">0%</span> used)
+              </div>
+            </div>
+            <div class="storage-limits">
+              <div class="limit-item">
+                <span class="limit-label">Max file size:</span>
+                <span class="limit-value">100 MB</span>
+              </div>
+              <div class="limit-item">
+                <span class="limit-label">Total storage:</span>
+                <span class="limit-value">2 GB</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Files List -->
