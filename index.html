@@ -3,12 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PDF PLACE - Educational Resource Hub for NCERT books, previous year questions, mock tests, and study notes">
+  <meta name="keywords" content="PDF, education, NCERT, study materials, mock tests, previous year questions">
+  <meta name="author" content="AYUSH KUMAR">
   <title>PDF PLACE</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  
-
   <!-- Login Section -->
   <div id="loginSection" class="login-section">
     <div class="login-container">
@@ -24,12 +26,12 @@
       <form onsubmit="login(event)" class="login-form">
         <div class="form-group">
           <label for="username">Email Address</label>
-          <input type="email" id="username" placeholder="Enter your email" required>
+          <input type="email" id="username" placeholder="Enter your email" required autocomplete="email">
         </div>
         <div class="form-group">
           <label for="password">Password</label>
           <div class="password-input-container">
-            <input type="password" id="password" placeholder="Enter your password" required>
+            <input type="password" id="password" placeholder="Enter your password" required autocomplete="current-password">
             <span class="password-toggle" onclick="togglePasswordVisibility()">
               <span id="passwordToggleIcon">👁️</span>
             </span>
@@ -43,7 +45,8 @@
       <div class="demo-info">
         <h4>Welcome to PDF PLACE</h4>
         <p>Enter your credentials to access the educational resource hub</p>
-        <p class="demo-hint">Use any valid email and password to access the demo features</p>
+        <p class="demo-hint">Use any valid email and password to access the platform</p>
+        <p class="demo-hint">Admin features: Use email containing "admin" or "ayush"</p>
       </div>
     </div>
   </div>
@@ -75,10 +78,10 @@
 
       <!-- Navigation Tabs -->
       <nav class="nav-tabs">
-        <button class="tab-btn active" onclick="showTab('files')">📂 Files</button>
-        <button class="tab-btn" onclick="showTab('downloads')">📥 Downloads</button>
-        <button class="tab-btn" onclick="showTab('comments')">💬 Feedback</button>
-        <button class="tab-btn" onclick="showTab('about')">ℹ️ About</button>
+        <button class="tab-btn active" onclick="showTab('files')" title="Browse and manage files (Ctrl+1)">📂 Files</button>
+        <button class="tab-btn" onclick="showTab('downloads')" title="View download history (Ctrl+2)">📥 Downloads</button>
+        <button class="tab-btn" onclick="showTab('comments')" title="Submit feedback (Ctrl+3)">💬 Feedback</button>
+        <button class="tab-btn" onclick="showTab('about')" title="About PDF PLACE (Ctrl+4)">ℹ️ About</button>
       </nav>
 
       <!-- Files Tab -->
@@ -88,7 +91,7 @@
           <h2>📤 Upload Files</h2>
           <form id="uploadForm" onsubmit="uploadPDF(event)" class="upload-form">
             <div class="file-input-container">
-              <input type="file" id="pdfFile" accept="application/pdf" required>
+              <input type="file" id="pdfFile" accept="application/pdf" required aria-label="Select PDF file">
               <select id="categorySelect" required>
                 <option value="">Select Category</option>
                 <option value="ncert">NCERT Books</option>
@@ -115,7 +118,7 @@
 
         <!-- Search and Filter -->
         <div class="search-container">
-          <input type="text" id="searchInput" placeholder="🔍 Search PDFs..." onkeyup="searchPDFs()">
+          <input type="text" id="searchInput" placeholder="🔍 Search PDFs... (Ctrl+F)" aria-label="Search files">
           <select id="categoryFilter" onchange="filterByCategory()">
             <option value="">All Categories</option>
             <option value="ncert">NCERT Books</option>
@@ -246,6 +249,8 @@
                 <li>🔍 Search and filter functionality</li>
                 <li>💬 Feedback system</li>
                 <li>🌙 Dark/Light theme</li>
+                <li>📱 Responsive design</li>
+                <li>♿ Accessibility features</li>
               </ul>
             </div>
             <div class="about-card">
@@ -253,10 +258,18 @@
               <p><strong>DEVELOPED BY:</strong> AYUSH KUMAR</p>
               <p><strong>CONTACT:</strong> 7673085672</p>
               <p><strong>EMAIL:</strong> AK7631459148@gmail.com</p>
+              <p><strong>VERSION:</strong> 2.0.0</p>
             </div>
             <div class="about-card">
               <h3>📞 Support</h3>
               <p>For suggestions, bug reports, or any queries, please use the feedback form in the Feedback tab or contact the developer directly.</p>
+              <div style="margin-top: 15px;">
+                <h4>⌨️ Keyboard Shortcuts:</h4>
+                <ul style="font-size: 12px; margin-top: 8px;">
+                  <li>Ctrl+F: Focus search</li>
+                  <li>Ctrl+1-4: Switch tabs</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -264,20 +277,18 @@
     </div>
   </div>
 
-  
-
   <!-- Forgot Password Modal -->
   <div id="forgotPasswordModal" class="modal-overlay" style="display: none;">
     <div class="modal-content">
       <div class="modal-header">
         <h3>🔒 Reset Password</h3>
-        <button onclick="closeForgotPassword()" class="close-btn">&times;</button>
+        <button onclick="closeForgotPassword()" class="close-btn" aria-label="Close modal">&times;</button>
       </div>
       <div class="modal-body">
         <form onsubmit="sendPasswordReset(); return false;">
           <div class="form-group">
             <label for="resetEmail">Email Address</label>
-            <input type="email" id="resetEmail" placeholder="Enter your email" required>
+            <input type="email" id="resetEmail" placeholder="Enter your email" required autocomplete="email">
           </div>
           <button type="submit" class="submit-btn">📧 Send Reset Link</button>
         </form>
@@ -296,7 +307,7 @@
     <div class="toast-content">
       <span class="toast-icon">❌</span>
       <span id="errorMessage" class="toast-message"></span>
-      <button onclick="hideToast('errorToast')" class="toast-close">&times;</button>
+      <button onclick="hideToast('errorToast')" class="toast-close" aria-label="Close notification">&times;</button>
     </div>
   </div>
 
@@ -304,7 +315,7 @@
     <div class="toast-content">
       <span class="toast-icon">✅</span>
       <span id="successMessage" class="toast-message"></span>
-      <button onclick="hideToast('successToast')" class="toast-close">&times;</button>
+      <button onclick="hideToast('successToast')" class="toast-close" aria-label="Close notification">&times;</button>
     </div>
   </div>
 
